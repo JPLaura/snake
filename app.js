@@ -9,10 +9,18 @@ function convertToPixels(n) {
 
 }
 
+function draw () {
+    updateLocation()
+    drawSnake()
+    setTimeout(() => (
+        window.requestAnimationFrame(draw)
+    ))
+}
+
 
 function updateSnake () {
 
-    context-strokeStyle = 'white'
+    context.strokeStyle = 'white'
     context.lineWidth = 1
 
 
@@ -37,16 +45,20 @@ function updateLocation () {
         case 'left':
             newX = snakeCoordinates[0][0]
             newY = snakeCoordinates[0][1]  
-            break:
+            break
         case 'right':
             newX = snakeCoordinates[0][0]
             newY = snakeCoordinates[0][1]        
             break
     }
 
-    snakeCoordinates
+    snakeCoordinates.unshift([newx, newY])
+    snakeCoordinates.pop()
 }
-
+ let snakeCoordinates = [
+    [40, 40],
+    [40, 41]
+ ]
 
 const canvas = document.getElementById('snakeCanvas')
 const context = canvas.getContext('2d')
